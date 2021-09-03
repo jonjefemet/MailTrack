@@ -17,9 +17,14 @@ public class TrackingDispatcher {
 			System.out.println("Type in  number tracking:");
 			String numberTracking = sc.nextLine().toUpperCase();
 			String trackingType = TrackingDispatcher.getTrackingType(numberTracking);
-			
+
 			TrackingInterface trackingFactory = TrackingFactory.create(trackingType, numberTracking);
-			trackingFactory.find(numberTracking);
+
+			if (trackingFactory != null) {
+				trackingFactory.find(numberTracking);
+			} else {
+				System.out.println("\nInvalid tracking number for the system\n");
+			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -28,7 +33,7 @@ public class TrackingDispatcher {
 	}
 
 	private static String getTrackingType(String numberTracking) {
-		
+
 		if (Pattern.compile("[A-Z]{2}[0-9]{9}[A-Z]{2}").matcher(numberTracking).matches()) {
 			return Constants.INTERNATIONAL_FORMAT;
 		}

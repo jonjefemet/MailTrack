@@ -10,16 +10,16 @@ public class TrackingFactory {
 
 		switch (type) {
 		case Constants.INTERNATIONAL_FORMAT:
-			return TrackingFactory.findServiceInternational(numberTracking);
+			return TrackingFactory.findInternationalService(numberTracking);
 		default:
 			return null;
 		}
 	}
 
-	private static TrackingInterface findServiceInternational(String numberTracking) {
+	private static TrackingInterface findInternationalService(String numberTracking) {
 
-		String country = numberTracking.substring(numberTracking.length()-2);
-		
+		String country = numberTracking.substring(numberTracking.length() - 2);
+
 		switch (country) {
 		case "JP":
 			return new TrackJapanPostServices();
