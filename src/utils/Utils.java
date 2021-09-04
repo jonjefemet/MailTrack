@@ -2,6 +2,9 @@ package utils;
 
 import java.io.IOException;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 public class Utils {
 
 	public final static void clearConsole() {
@@ -12,6 +15,21 @@ public class Utils {
 				Runtime.getRuntime().exec("clear");
 		} catch (IOException | InterruptedException ex) {
 		}
+
+	}
+
+	public static Document getHtmlDocument(String url) {
+
+		Document document = null;
+		
+		try {
+			System.out.println("\nExecuting request\n");
+			document = Jsoup.connect(url).timeout(18000).get();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return document;
 
 	}
 
